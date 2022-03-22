@@ -1,11 +1,10 @@
-.container {
-  width: 90%;
-  margin: 0 auto;
-}
-
 .nav {
   background-color: #1c2b35;
   color: rgb(184, 186, 187);
+}
+.container {
+  width: 90%;
+  margin: 0 auto;
   padding: 0 30px;
 }
 
