@@ -1,6 +1,10 @@
 .nav {
   background-color: #1c2b35;
   color: rgb(184, 186, 187);
+  /* position: fixed;
+  left: 0;
+  right: 0;
+  top: 0; */
 }
 .container {
   width: 90%;

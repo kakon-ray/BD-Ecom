@@ -1,5 +1,11 @@
+.cart-siderbar-design {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
 .Order {
   text-align: center;
+  color: rgb(230, 139, 3);
 }
 
 .order-body {
