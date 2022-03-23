@@ -8,23 +8,26 @@ const ShopSidebar = ({ cart }) => {
   //   console.log(cart);
 
   // array reduce mathod usegin totalprice in the props cart
-  const totalPrice = cart.reduce((total, current) => {
-    return total + current.price;
-  }, 0);
 
-  const totalShipingCarj = cart.reduce((total, current) => {
-    return total + current.shipping;
-  }, 0);
+  let totalPrice = 0;
+  let totalShipingCarj = 0;
+  let quentity = 0;
+  for (const cartItem of cart) {
+    cartItem.quentity = cartItem.quentity ? cartItem.quentity : 1;
+    quentity = quentity + cartItem.quentity;
+
+    totalPrice = totalPrice + cartItem.price * cartItem.quentity;
+    totalShipingCarj = totalShipingCarj + cartItem.shipping * cartItem.quentity;
+  }
 
   const totalText = (totalPrice * 10) / 100;
-
   const grandTotal = totalPrice + totalShipingCarj + totalText;
 
   return (
     <div className="cart-siderbar-design">
       <h1 className="Order">Order Summery</h1>
       <div className="order-body">
-        <h3>Selected Items: {cart.length}</h3>
+        <h3>Selected Items: {quentity}</h3>
         <h3>Total Price: ${totalPrice}</h3>
         <h3>Total Shipping Charge: ${totalShipingCarj}</h3>
         <h3>Tax: ${totalText}</h3>

@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Header from "../Header.js/Header";
+import { addLocalStrge, getLocalStorageId } from "../LocalStroge/LocalStroge";
+
 import ShopSidebar from "../ShopSidebar/ShopSidebar";
 import "./Shop.css";
 import ShopCard from "./ShopCard";
 
 const Shop = () => {
-  const [data, setData] = useState([]);
+  const [products, setData] = useState([]);
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
@@ -14,9 +16,28 @@ const Shop = () => {
       .then((data) => setData(data));
   }, []);
 
+  // localstroge data display show
+  useEffect(() => {
+    const localStorageId = getLocalStorageId();
+
+    let localStorageValue = [];
+    for (let dataItem in localStorageId) {
+      const cartProduct = products.find((item) => item.id === dataItem);
+
+      if (cartProduct) {
+        cartProduct.quentity = localStorageId[dataItem];
+
+        // console.log(cartProduct);
+        localStorageValue.push(cartProduct);
+      }
+    }
+    setCart(localStorageValue);
+  }, [products]);
+
   const handleClick = (item) => {
     const newCartItem = [...cart, item];
     setCart(newCartItem);
+    addLocalStrge(item.id);
   };
 
   return (
@@ -24,7 +45,7 @@ const Shop = () => {
       <Header />
       <div className="product">
         <div className="product-body">
-          {data.map((item) => {
+          {products.map((item) => {
             return (
               <ShopCard
                 key={item.id}
