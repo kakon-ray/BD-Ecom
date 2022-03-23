@@ -5,6 +5,7 @@ import ShopCard from "./ShopCard";
 
 const Shop = () => {
   const [data, setData] = useState([]);
+  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     fetch("products.json")
@@ -13,7 +14,8 @@ const Shop = () => {
   }, []);
 
   const handleClick = (item) => {
-    console.log(item);
+    const newCartItem = [...cart, item];
+    setCart(newCartItem);
   };
 
   return (
@@ -38,7 +40,8 @@ const Shop = () => {
         </div>
         <div className="product-sidebar">
           <div>
-            <h1>Hello</h1>
+            <h1>Order Summery</h1>
+            <h2>Product Length {cart.length}</h2>
           </div>
         </div>
       </div>
