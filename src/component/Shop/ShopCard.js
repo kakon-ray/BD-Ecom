@@ -1,27 +1,36 @@
 import React from "react";
 
-const ShopCard = (props) => {
+const ShopCard = ({
+  handleClick,
+  item,
+  price,
+  name,
+  img,
+  category,
+  seller,
+}) => {
   return (
     <>
       <div className="flex-col">
         <div className="img-container">
-          <img src={props.img} alt="" className="img" />
+          <img src={img} alt="" className="img" />
         </div>
         <div className="header-area">
-          <h4>
-            {props.name.split("").length < 5
-              ? props.name
-              : props.name.split("").slice(0, 20).join("")}
-          </h4>
-          <span className="price">Price: {props.price}</span>
+          <h4>{name}</h4>
+          <p className="price">Price: {price}</p>
         </div>
 
         <div className="footer-area">
-          <p>{props.category}</p>
-          <p>{props.seller}</p>
+          <p>{category}</p>
+          <p>{seller}</p>
         </div>
-        <div className="product-body-footer">
-          <p>Add to Cart</p>
+        <div>
+          <button
+            className="product-body-footer"
+            onClick={() => handleClick(item)}
+          >
+            Add to Cart
+          </button>
         </div>
       </div>
     </>

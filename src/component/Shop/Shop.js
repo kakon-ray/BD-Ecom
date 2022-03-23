@@ -12,7 +12,10 @@ const Shop = () => {
       .then((data) => setData(data));
   }, []);
 
-  console.log(data);
+  const handleClick = (item) => {
+    console.log(item);
+  };
+
   return (
     <>
       <Header />
@@ -21,11 +24,14 @@ const Shop = () => {
           {data.map((item) => {
             return (
               <ShopCard
+                key={item.id}
                 img={item.img}
                 name={item.name}
                 category={item.category}
                 seller={item.seller}
                 price={item.price}
+                item={item}
+                handleClick={handleClick}
               />
             );
           })}
