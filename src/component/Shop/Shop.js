@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Header from "../Header.js/Header";
+import ShopSidebar from "../ShopSidebar/ShopSidebar";
 import "./Shop.css";
 import ShopCard from "./ShopCard";
 
@@ -39,10 +40,7 @@ const Shop = () => {
           })}
         </div>
         <div className="product-sidebar">
-          <div>
-            <h1>Order Summery</h1>
-            <h2>Product Length {cart.length}</h2>
-          </div>
+          <ShopSidebar cart={cart} />
         </div>
       </div>
     </>
