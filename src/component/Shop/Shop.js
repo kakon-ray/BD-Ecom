@@ -28,7 +28,7 @@ const Shop = () => {
       if (cartProduct) {
         const quantity = localStorageId[dataItem];
         cartProduct.quantity = quantity;
-        cartProduct.quentity = localStorageId[dataItem];
+        cartProduct.quantity = localStorageId[dataItem];
 
         // console.log(cartProduct);
         localStorageValue.push(cartProduct);
@@ -55,10 +55,10 @@ const Shop = () => {
     setCart(newCart);
     // console.log(cart);
     addLocalStrge(item.id);
-    // console.log(cart);
 
     // location.reload();
   };
+  console.log(cart);
 
   return (
     <>

@@ -11,12 +11,10 @@ const ShopSidebar = ({ cart }) => {
 
   let totalPrice = 0;
   let totalShipingCarj = 0;
-  let quentity = 0;
+  let quantity = 0;
   for (const cartItem of cart) {
-    console.log(cartItem.quantity);
-
     totalPrice = totalPrice + cartItem.price * cartItem.quantity;
-    quentity = quentity + cartItem.quantity;
+    quantity = quantity + cartItem.quantity;
     totalShipingCarj = totalShipingCarj + cartItem.shipping;
   }
 
@@ -27,7 +25,7 @@ const ShopSidebar = ({ cart }) => {
     <div className="cart-siderbar-design">
       <h1 className="Order">Order Summery</h1>
       <div className="order-body">
-        <h3>Selected Items: {quentity}</h3>
+        <h3>Selected Items: {quantity}</h3>
         <h3>Total Price: ${totalPrice}</h3>
         <h3>Total Shipping Charge: ${totalShipingCarj}</h3>
         <h3>Tax: ${totalText}</h3>
