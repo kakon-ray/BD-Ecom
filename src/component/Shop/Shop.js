@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import React, { useEffect, useState } from "react";
 import Header from "../Header.js/Header";
 import { addLocalStrge, getLocalStorageId } from "../LocalStroge/LocalStroge";
@@ -25,6 +26,8 @@ const Shop = () => {
       const cartProduct = products.find((item) => item.id === dataItem);
 
       if (cartProduct) {
+        const quantity = localStorageId[dataItem];
+        cartProduct.quantity = quantity;
         cartProduct.quentity = localStorageId[dataItem];
 
         // console.log(cartProduct);
@@ -35,9 +38,26 @@ const Shop = () => {
   }, [products]);
 
   const handleClick = (item) => {
-    const newCartItem = [...cart, item];
-    setCart(newCartItem);
+    let newCart = [];
+    const exists = cart.find((product) => product.id === item.id);
+
+    if (!exists) {
+      item.quantity = 1;
+      newCart = [...cart, item];
+      // console.log(newCart);
+    } else {
+      const rest = cart.filter((product) => product.id !== item.id);
+      exists.quantity = exists.quantity + 1;
+      newCart = [...rest, exists];
+      // console.log(newCart);
+    }
+
+    setCart(newCart);
+    // console.log(cart);
     addLocalStrge(item.id);
+    // console.log(cart);
+
+    // location.reload();
   };
 
   return (

@@ -13,11 +13,11 @@ const ShopSidebar = ({ cart }) => {
   let totalShipingCarj = 0;
   let quentity = 0;
   for (const cartItem of cart) {
-    cartItem.quentity = cartItem.quentity ? cartItem.quentity : 1;
-    quentity = quentity + cartItem.quentity;
+    console.log(cartItem.quantity);
 
-    totalPrice = totalPrice + cartItem.price * cartItem.quentity;
-    totalShipingCarj = totalShipingCarj + cartItem.shipping * cartItem.quentity;
+    totalPrice = totalPrice + cartItem.price * cartItem.quantity;
+    quentity = quentity + cartItem.quantity;
+    totalShipingCarj = totalShipingCarj + cartItem.shipping;
   }
 
   const totalText = (totalPrice * 10) / 100;
