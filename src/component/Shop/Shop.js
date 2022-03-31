@@ -1,43 +1,24 @@
 /* eslint-disable no-restricted-globals */
 import React, { useEffect, useState } from "react";
-import Header from "../Header.js/Header";
+import { Link } from "react-router-dom";
+import useCart from "../../CustomHooks/useCart";
+import useProducts from "../../CustomHooks/useProducts";
+
 import { addLocalStrge, getLocalStorageId } from "../LocalStroge/LocalStroge";
 
 import ShopSidebar from "../ShopSidebar/ShopSidebar";
 import "./Shop.css";
 import ShopCard from "./ShopCard";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+
 const Shop = () => {
-  const [products, setData] = useState([]);
-  const [cart, setCart] = useState([]);
+  const [products, setData] = useProducts();
+  const [cart, setCart] = useCart(products);
 
-  useEffect(() => {
-    fetch("products.json")
-      .then((response) => response.json())
-      .then((data) => setData(data));
-  }, []);
-
-  // localstroge data display show
-  useEffect(() => {
-    const localStorageId = getLocalStorageId();
-
-    let localStorageValue = [];
-    for (let dataItem in localStorageId) {
-      const cartProduct = products.find((item) => item.id === dataItem);
-
-      if (cartProduct) {
-        const quantity = localStorageId[dataItem];
-        cartProduct.quantity = quantity;
-        cartProduct.quantity = localStorageId[dataItem];
-
-        // console.log(cartProduct);
-        localStorageValue.push(cartProduct);
-      }
-    }
-    setCart(localStorageValue);
-  }, [products]);
-
-  const handleClick = (item) => {
+  const addToCart = (item) => {
     let newCart = [];
     const exists = cart.find((product) => product.id === item.id);
 
@@ -55,15 +36,14 @@ const Shop = () => {
     setCart(newCart);
     // console.log(cart);
     addLocalStrge(item.id);
-
-    // location.reload();
   };
-  console.log(cart);
-
+  const clearLocalDB = () => {
+    localStorage.clear();
+    setCart([]);
+  };
   return (
     <>
-      <Header />
-      <div className="product">
+      <div className="product container">
         <div className="product-body">
           {products.map((item) => {
             return (
@@ -75,13 +55,20 @@ const Shop = () => {
                 seller={item.seller}
                 price={item.price}
                 item={item}
-                handleClick={handleClick}
+                addToCart={addToCart}
               />
             );
           })}
         </div>
         <div className="product-sidebar">
-          <ShopSidebar cart={cart} />
+          <ShopSidebar cart={cart} clearLocalDB={clearLocalDB}>
+            <Link to="/order">
+              <button className="remove-order">
+                Remove Product{" "}
+                <FontAwesomeIcon className="icon" icon={faArrowRight} />
+              </button>
+            </Link>
+          </ShopSidebar>
         </div>
       </div>
     </>

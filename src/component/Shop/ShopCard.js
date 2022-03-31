@@ -3,15 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 // import { faCoffee } from "@fortawesome/free-solid-svg-icons";
 
-const ShopCard = ({
-  handleClick,
-  item,
-  price,
-  name,
-  img,
-  category,
-  seller,
-}) => {
+const ShopCard = ({ addToCart, item, price, name, img, category, seller }) => {
   return (
     <>
       <div className="flex-col">
@@ -30,7 +22,7 @@ const ShopCard = ({
         <div>
           <button
             className="product-body-footer"
-            onClick={() => handleClick(item)}
+            onClick={() => addToCart(item)}
           >
             Add to Cart
             <FontAwesomeIcon className="icon" icon={faShoppingCart} />

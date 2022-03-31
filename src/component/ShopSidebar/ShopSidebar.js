@@ -3,8 +3,14 @@ import "./ShopSldebar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
+import useCart from "../../CustomHooks/useCart";
+import useProducts from "../../CustomHooks/useProducts";
 
-const ShopSidebar = ({ cart }) => {
+const ShopSidebar = (props) => {
+  const [products, setData] = useProducts();
+  const [cart, setCart] = useCart(products);
+
   //   console.log(cart);
 
   // array reduce mathod usegin totalprice in the props cart
@@ -12,7 +18,7 @@ const ShopSidebar = ({ cart }) => {
   let totalPrice = 0;
   let totalShipingCarj = 0;
   let quantity = 0;
-  for (const cartItem of cart) {
+  for (const cartItem of props.cart) {
     totalPrice = totalPrice + cartItem.price * cartItem.quantity;
     quantity = quantity + cartItem.quantity;
     totalShipingCarj = totalShipingCarj + cartItem.shipping;
@@ -32,15 +38,10 @@ const ShopSidebar = ({ cart }) => {
         <h3>Grand Total: ${grandTotal}</h3>
       </div>
       <div>
-        <button className="clear-cart">
+        <button className="clear-cart" onClick={props.clearLocalDB}>
           Clear Cart <FontAwesomeIcon className="icon" icon={faTrash} />
         </button>
-        <p>
-          <button className="remove-order">
-            Remove Order{" "}
-            <FontAwesomeIcon className="icon" icon={faArrowRight} />
-          </button>
-        </p>
+        <p>{props.children}</p>
       </div>
     </div>
   );

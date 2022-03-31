@@ -1,0 +1,45 @@
+.home-container {
+  display: flex;
+  justify-content: space-around;
+}
+.container {
+  width: 95%;
+  margin: auto auto;
+}
+.home-content {
+  margin-top: 15vw;
+}
+
+.button {
+  background-color: #4caf50;
+  /*Green*/
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  padding: 10px 24px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+.button:hover {
+  background-color: #1c7d1f;
+}
+
+.home-img img {
+  height: 500px;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+}
+.home-img {
+  margin-top: 2%;
+}
