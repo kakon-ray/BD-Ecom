@@ -60,9 +60,9 @@ const Order = () => {
         </div>
         <div className="product-sidebar">
           <ShopSidebar cart={cart} clearLocalDB={clearLocalDB}>
-            <Link to="/shop">
+            <Link to="/shiping">
               <button className="remove-order">
-                Add Shop{" "}
+                Shipping Information{" "}
                 <FontAwesomeIcon className="icon" icon={faArrowRight} />
               </button>
             </Link>
