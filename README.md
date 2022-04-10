@@ -1,6 +1,6 @@
 # Localstroge Database
 
-> ## [Amazon](https://fir-345a5.firebaseapp.com//).
+> ## [Amazon](https://fir-345a5.web.app/).
 
 > ## This Project Create React js and save data Localstroge
 
