@@ -9,7 +9,7 @@ const Home = () => {
         <h1>New Collection For Fall</h1>
         <p>Discover all the new arrivals of ready-to-wear collection.</p>
         <Link to="/shop">
-          <button class="button button1">Shop Now</button>
+          <button className="button button1">Shop Now</button>
         </Link>
       </div>
       <div className="home-img">
