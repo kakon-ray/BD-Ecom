@@ -15,13 +15,14 @@
 .flex {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   justify-items: center;
   align-items: center;
 }
 .logo {
   text-decoration: none;
   color: aliceblue;
+  margin-right: auto;
 }
 
 .flex ul {
@@ -31,6 +32,7 @@
 .manu {
   display: flex;
   flex-direction: row;
+  margin-right: auto;
 }
 
 .flex ul li {

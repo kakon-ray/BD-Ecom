@@ -11,9 +11,11 @@ const Header = () => {
   const logOut = () => {
     signOut(auth);
   };
+
+  console.log(user);
   return (
     <div className="nav">
-      <div className="container">
+      <div className="container ">
         <div className="flex">
           <Link to="/" className="logo">
             Amazon
@@ -50,6 +52,7 @@ const Header = () => {
               <li>Manage</li>
             </Link>
           </ul>
+          <span>{user ? <p>{user.email}</p> : ""}</span>
         </div>
       </div>
     </div>
