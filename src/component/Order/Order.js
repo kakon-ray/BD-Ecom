@@ -17,13 +17,12 @@ import {
 import { Link } from "react-router-dom";
 
 const Order = () => {
-  const [products, setData] = useProducts();
-  const [cart, setCart] = useCart(products);
+  const [cart, setCart] = useCart();
 
   const handleRemove = (item) => {
-    const rest = cart.filter((cartItem) => cartItem.id !== item.id);
+    const rest = cart.filter((cartItem) => cartItem._id !== item._id);
     setCart(rest);
-    removeLocalStrge(item.id);
+    removeLocalStrge(item._id);
   };
 
   const clearLocalDB = () => {
@@ -35,27 +34,29 @@ const Order = () => {
       <div className="product container">
         <div className="product-body">
           {cart.map((cartItem) => (
-            <div className="card" key={cartItem.id}>
-              <img
-                src={cartItem.img}
-                alt="Avatar"
-                style={{ width: "100%", heigth: "100%" }}
-              />
-              <div className="container">
-                <h4>
-                  <b>{cartItem.name}</b>
-                </h4>
-                <p>{cartItem.price}</p>
-                <p>This Item Number: {cartItem.quantity}</p>
+            <React.Fragment key={cartItem._id}>
+              <div className="card">
+                <img
+                  src={cartItem.img}
+                  alt="Avatar"
+                  style={{ width: "100%", heigth: "100%" }}
+                />
+                <div className="container">
+                  <h4>
+                    <b>{cartItem.name}</b>
+                  </h4>
+                  <p>{cartItem.price}</p>
+                  <p>This Item Number: {cartItem.quantity}</p>
+                </div>
+                <button
+                  className="product-body-footer"
+                  onClick={() => handleRemove(cartItem)}
+                >
+                  Remove To Cart{" "}
+                  <FontAwesomeIcon className="icon" icon={faTrash} />
+                </button>
               </div>
-              <button
-                className="product-body-footer"
-                onClick={() => handleRemove(cartItem)}
-              >
-                Remove To Cart{" "}
-                <FontAwesomeIcon className="icon" icon={faTrash} />
-              </button>
-            </div>
+            </React.Fragment>
           ))}
         </div>
         <div className="product-sidebar">

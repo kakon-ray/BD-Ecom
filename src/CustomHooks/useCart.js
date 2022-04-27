@@ -3,27 +3,39 @@ import { getLocalStorageId } from "../component/LocalStroge/LocalStroge";
 
 // this is a custom hook this hook use find localstroge value and display show
 
-const useCart = (products) => {
+const useCart = () => {
   const [cart, setCart] = useState([]);
 
   // localstroge data display show
   useEffect(() => {
-    const localStorageId = getLocalStorageId();
+    const storedCart = getLocalStorageId();
 
-    let localStorageValue = [];
-    for (let dataItem in localStorageId) {
-      const cartProduct = products.find((item) => item.id === dataItem);
+    const savedCart = [];
+    const keys = Object.keys(storedCart);
 
-      if (cartProduct) {
-        // get localstroge product value
-        const quantity = localStorageId[dataItem];
-        cartProduct.quantity = quantity;
-        // console.log(cartProduct);
-        localStorageValue.push(cartProduct);
-      }
-    }
-    setCart(localStorageValue);
-  }, [products]);
+    fetch("https://amazon-kakon.herokuapp.com/productByKeys", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(keys),
+    })
+      .then((res) => res.json())
+      .then((products) => {
+        for (let dataItem in storedCart) {
+          const cartProduct = products.find((item) => item._id === dataItem);
+
+          if (cartProduct) {
+            // get localstroge product value
+            const quantity = storedCart[dataItem];
+            cartProduct.quantity = quantity;
+            // console.log(cartProduct);
+            savedCart.push(cartProduct);
+          }
+        }
+        setCart(savedCart);
+      });
+  }, []);
 
   return [cart, setCart];
 };

@@ -2,6 +2,11 @@
   width: 95%;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 100px;
+}
+
+.shop-container {
+  margin: 50px auto;
 }
 
 .product {
@@ -99,4 +104,20 @@
 
 .icon {
   margin-left: 4px;
+}
+
+/* style pagination */
+.pagination {
+  margin-bottom: 50px;
+}
+.pagination button,
+select {
+  margin-right: 10px;
+  background-color: white;
+  border: 1px solid orange;
+  padding: 8px 14px;
+}
+.pagination .selected {
+  background-color: orange;
+  color: white;
 }
